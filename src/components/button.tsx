@@ -1,24 +1,37 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick?: () => void; // Optional onClick handler
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset"; // Add the type prop for button types
 }
 
-const Button = ({ children, onClick }: ButtonProps) => {
-  const ButtonStyle = {
+const Button = ({ children, onClick, type = "button" }: ButtonProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const ButtonStyle: React.CSSProperties = {
     display: "inline-block",
-    padding: "10px",
-    backgroundColor: '#000',
+    padding: "12px",
+    backgroundColor: isHovered ? '#1D4ED8' : '#2563EB',
     color: '#fff',
-    marginBottom: '10px',
     cursor: 'pointer',
+    width: '100%',
+    fontWeight: 600,
+    textAlign: 'center',
+    borderRadius:'6Px',
+    transition: 'background-color 0.3s ease',
   };
 
   return (
-    <div style={ButtonStyle} onClick={onClick}>
+    <button 
+      type={type} 
+      style={ButtonStyle}
+      onClick={onClick}
+      onMouseEnter={()=>setIsHovered(true)}
+      onMouseLeave={()=>setIsHovered(false)}
+    >
       {children}
-    </div>
+    </button>
   );
 };
 
