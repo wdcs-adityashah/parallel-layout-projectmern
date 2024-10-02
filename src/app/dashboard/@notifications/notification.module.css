@@ -1,0 +1,10 @@
+/* styles.css or a relevant CSS file */
+
+.loaderButtonWrapper {
+    display: inline-block; 
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    align-items: center; 
+  }
+  
